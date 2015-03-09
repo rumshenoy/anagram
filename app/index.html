@@ -1,28 +1,46 @@
 <html ng-app ng-controller="AnagramCtrl as anagram">
-    <head>
-        <title>Anagram Unscrambler</title>
-        <script type="text/javascript" src="resources/dictEn.js"></script>
-        <script type="text/javascript" src="scripts/logic/anagram.js"></script>
-        <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
-        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
-        <script type="text/javascript" src="scripts/plumbing/anagramController.js"></script>
-    </head>
-    <body>
+<head>
+    <title>Anagram Unscrambler</title>
+    <script type="text/javascript" src="resources/dictEn.js"></script>
+    <script type="text/javascript" src="scripts/logic/anagram.js"></script>
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <script type="text/javascript" src="scripts/plumbing/anagramController.js"></script>
+</head>
+<body>
+<p/>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Anagram Unscrambler</h1>
+
+        <!--<p/>-->
+        <!--Enter word to unscramble:-->
+        <!--<input class="form-control" type="text" ng-model="anagram.word" ng-change="anagram.unscramble()"/>-->
+
+        <!--<p/>-->
+        <!--Unscrambled words:-->
+        <!--<ul>-->
+            <!--<li ng-repeat="unscrambledWord in anagram.unscrambledWords">-->
+                <!--{{unscrambledWord}}-->
+            <!--</li>-->
+        <!--</ul>-->
+        <!--<p/>-->
+
         <p/>
-        <div class="container">
-            <div class="jumbotron">
-                <h1>Anagram Unscrambler</h1>
-                <p/>
-                Enter word to unscramble:
-                <input class="form-control" type="text" ng-model="anagram.word" ng-change="anagram.unscramble()"/>
-                <p/>
-                Unscrambled words:
-                <ul>
-                    <li ng-repeat="unscrambledWord in anagram.unscrambledWords">
-                        {{unscrambledWord}}
-                    </li>
-                </ul>
+        Enter word for game:
+        <input class="form-control" type="text" ng-model="anagram.find" ng-change="anagram.giveSuggestions()"/>
+
+        <p/>
+        Suggestions:
+        <ul>
+            <div ng-repeat="(letter, value) in anagram.result">
+                <li ng-repeat="clue in value">
+                    {{clue}} without '{{letter}}'
+                </li>
             </div>
-        </div>
-    </body>
+        </ul>
+    </div>
+</div>
+</body>
 </html>

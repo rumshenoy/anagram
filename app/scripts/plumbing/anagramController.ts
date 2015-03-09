@@ -4,10 +4,15 @@ class AnagramCtrl {
     unscrambledWords: Array<string>;
     anagram: Anagram;
     word: string;
+    find:string;
+    result: Array<string>
     constructor() {
         this.anagram = new Anagram(EN_WORDS);
     }
     unscramble() {
         this.unscrambledWords = this.anagram.unscramble(this.word);
+    }
+    giveSuggestions(){
+        this.result = this.anagram.giveSuggestions(this.find);
     }
 }
