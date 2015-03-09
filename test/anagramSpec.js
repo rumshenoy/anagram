@@ -55,20 +55,32 @@ describe('Anagram tests', function () {
             expect(anagram.wordDict["aeels"]).toEqual(aeelsWords);
         });
     });
-    describe("should give suggestions of words", function () {
-        it("of length 1", function () {
-            var anagram = new Anagram(["horse", "sores", "scores", "scoffed"]);
+    describe("should give suggestions", function () {
+        it("which have just one character more than the input word", function () {
+            var anagram = new Anagram(["horse", "sores", "scores"]);
             expect(anagram.findSimilar("rose")).toEqual({ 'h': ["horse"], 's': ["sores"] });
         });
-        it("ignoring length greater than one", function () {
+        it("ignore words that have more than one character than the input word", function () {
             var anagram = new Anagram(["bores", "stored", "scores", "aroused"]);
             expect(anagram.findSimilar("rose")).toEqual({ 'b': ["bores"] });
         });
+        it("handling null input", function () {
+            var anagram = new Anagram(["bores", "stored", "scores", "aroused"]);
+            expect(anagram.findSimilar("")).toEqual({});
+        });
+        it("handling undefined input", function () {
+            var anagram = new Anagram(["bores", "stored", "scores", "aroused"]);
+            expect(anagram.findSimilar(undefined)).toEqual({});
+        });
     });
-    describe("should subtract", function () {
-        it("first occurrence of key characters", function () {
+    describe("should subtract two strings", function () {
+        it("by first occurrence of characters of the first word", function () {
             var anagram = new Anagram([]);
-            expect(anagram.stringSubtract("rose", "abcdefrose")).toEqual("abcdfe");
+            expect(anagram.stringSubtract("rose", "rosefrose")).toEqual("frose");
+        });
+        it("which are equal and return nothing", function () {
+            var anagram = new Anagram([]);
+            expect(anagram.stringSubtract("rose", "rose")).toEqual("");
         });
     });
 });
