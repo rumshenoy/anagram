@@ -27,21 +27,28 @@ class Anagram {
         return word.split("").sort().join("");
     }
 
-    findSimilar(word:string): {} {
+    findSimilar(word:string):{} {
         var similarWords = {};
         var keys = Object.keys(this.wordDict);
-        var toMatch = this.keyFrom(word);
-        for (var key in keys) {
-            var s = this.stringSubtract(toMatch, keys[key]);
-            if((s).length == 1 && keys[key].length == word.length + 1){
-                similarWords[s] = this.wordDict[keys[key]];
+        var toMatch = word === undefined ? "" : this.keyFrom(word);
+        if (toMatch != "") {
+            for (var key in keys) {
+                var toTest = keys[key];
+                var s = this.stringSubtract(toMatch, toTest);
+                if ((s).length == 1 && toTest.length == word.length + 1) {
+                    similarWords[s] = this.wordDict[toTest];
+                }
             }
         }
         return similarWords;
     }
 
-    stringSubtract(first:string, second:string): string{
-        for(var i=0; i < first.length; i++){
+    stringSubtract(first:string, second:string):string {
+        if(first === undefined || second === undefined){
+            return undefined;
+        }
+        
+        for (var i = 0; i < first.length; i++) {
             second = second.replace(first[i], "");
         }
         return second;
