@@ -9,7 +9,8 @@ var Anagram = (function () {
             var key = this.keyFrom(word);
             if (key in this.wordDict) {
                 this.wordDict[key].push(word);
-            } else {
+            }
+            else {
                 this.wordDict[key] = [word];
             }
         }
@@ -18,9 +19,11 @@ var Anagram = (function () {
         var answer = word === undefined ? [] : this.wordDict[this.keyFrom(word)];
         return answer === undefined ? [] : answer;
     };
-
     Anagram.prototype.keyFrom = function (word) {
         return word.split("").sort().join("");
+    };
+    Anagram.prototype.findSimilar = function (word) {
+        return null;
     };
     return Anagram;
 })();

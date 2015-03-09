@@ -23,4 +23,8 @@ class Anagram {
     keyFrom(word: string): string {
         return word.split("").sort().join("");
     }
+
+    findSimilar(word:String): Array<string>{
+        return null;
+    }
 }

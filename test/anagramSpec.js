@@ -21,19 +21,16 @@ describe('Anagram tests', function () {
             expect(anagram.unscramble(undefined)).toEqual([]);
         });
     });
-
     it("makes key from word", function () {
         var anagram = new Anagram(["apple"]);
         expect(anagram.keyFrom("apple")).toEqual("aelpp");
     });
-
     it("should save make dictionary in constructor", function () {
         var anagram = new Anagram(["apple", "simple"]);
         expect(anagram.wordDict).toNotBe(null);
         expect(anagram.wordDict["aelpp"]).toEqual(["apple"]);
         expect(anagram.wordDict["eilmps"]).toEqual(["simple"]);
     });
-
     describe("should make dictionary with keys", function () {
         it("for one to one mappings", function () {
             var anagram = new Anagram(["apple", "simple"]);
@@ -57,6 +54,13 @@ describe('Anagram tests', function () {
             expect(anagram.wordDict["door"]).toEqual(doorWords);
             expect(anagram.wordDict["aeels"]).toEqual(aeelsWords);
         });
+    });
+    describe("should return suggestions", function () {
+        if ("should return similar words", function () {
+            var anagram = new Anagram(["horse", "sores", "bull", "cow"]);
+            expect(anagram.findSimilar("rose")).toEqual(["ehorse", "eorss"]);
+        })
+            ;
     });
 });
 //# sourceMappingURL=anagramSpec.js.map
