@@ -10,5 +10,10 @@ describe("Anagram Controller Tests", function () {
         anagramController.unscramble();
         expect(anagramController.unscrambledWords).toEqual(["apple"]);
     });
+    it("should produce correct suggestions", function () {
+        anagramController.input = "marquee";
+        anagramController.findSimilar();
+        expect(anagramController.suggestions).toEqual({s : [ 'marquees' ], r : [ 'remarque' ] });
+    });
 });
 //# sourceMappingURL=anagramControllerSpec.js.map

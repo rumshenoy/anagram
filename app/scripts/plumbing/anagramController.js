@@ -7,6 +7,9 @@ var AnagramCtrl = (function () {
     AnagramCtrl.prototype.unscramble = function () {
         this.unscrambledWords = this.anagram.unscramble(this.word);
     };
+    AnagramCtrl.prototype.findSimilar = function () {
+        this.suggestions = this.anagram.findSimilar(this.input);
+    };
     return AnagramCtrl;
 })();
 //# sourceMappingURL=anagramController.js.map

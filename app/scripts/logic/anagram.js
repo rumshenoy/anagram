@@ -23,7 +23,22 @@ var Anagram = (function () {
         return word.split("").sort().join("");
     };
     Anagram.prototype.findSimilar = function (word) {
-        return null;
+        var similarWords = {};
+        var keys = Object.keys(this.wordDict);
+        var toMatch = this.keyFrom(word);
+        for (var key in keys) {
+            var s = this.stringSubtract(toMatch, keys[key]);
+            if ((s).length == 1 && keys[key].length == word.length + 1) {
+                similarWords[s] = this.wordDict[keys[key]];
+            }
+        }
+        return similarWords;
+    };
+    Anagram.prototype.stringSubtract = function (first, second) {
+        for (var i = 0; i < first.length; i++) {
+            second = second.replace(first[i], "");
+        }
+        return second;
     };
     return Anagram;
 })();

@@ -60,10 +60,23 @@ describe('Anagram tests', function () {
         });
     });
 
-    describe("should return suggestions", function () {
-        if ("should return similar words", function () {
-            var anagram = new Anagram(["horse", "sores", "bull", "cow"]);
-            expect(anagram.findSimilar("rose")).toEqual(["ehorse","eorss"]);
+    describe("should give suggestions of words", function () {
+        it("of length 1", function () {
+            var anagram = new Anagram(["horse", "sores", "scores", "scoffed"]);
+            expect(anagram.findSimilar("rose")).toEqual({'h': ["horse"], 's': ["sores"]});
         });
-    })
+
+        it("ignoring length greater than one", function () {
+            var anagram = new Anagram(["bores", "stored", "scores", "aroused"]);
+            expect(anagram.findSimilar("rose")).toEqual({'b': ["bores"]});
+        });
+    });
+
+    describe("should subtract", function () {
+        it("first occurrence of key characters", function () {
+            var anagram = new Anagram([]);
+            expect(anagram.stringSubtract("rose", "abcdefrose")).toEqual("abcdfe");
+        });
+    });
+
 });
